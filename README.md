@@ -70,17 +70,18 @@ Now, the code supports 36 styles:
 
 |abap|algol|algol_nu|arduino|autumn|borland|
 |:---:|:---:|:---:|:---:|:---:|:---:|
-|![abap](quiver-image-url/abap.png)|![algol](quiver-image-url/algol.png)|![algol_nu](quiver-image-url/algol_nu.png)|![arduino](quiver-image-url/arduino.png)|![autumn](quiver-image-url/autumn.png)|![borland](quiver-image-url/borland.png)|
+
+|![abap](./images/abap.png)|![algol](./images/algol.png)|![algol_nu](./images/algol_nu.png)|![arduino](./images/arduino.png)|![autumn](./images/autumn.png)|![borland](./images/borland.png)|
 |bw|colorful|default|emacs|friendly|fruity|
-|![bw](quiver-image-url/bw.png)|![colorful](quiver-image-url/colorful.png)|![default](quiver-image-url/default.png)|![emacs](quiver-image-url/emacs.png)|![friendly](quiver-image-url/friendly.png)|![fruity](quiver-image-url/fruity.png)|
+|![bw](./images/bw.png)|![colorful](./images/colorful.png)|![default](./images/default.png)|![emacs](./images/emacs.png)|![friendly](./images/friendly.png)|![fruity](./images/fruity.png)|
 |igor|inkpot|lovelace|manni|monokai|murphy|
-|![igor](quiver-image-url/igor.png)|![inkpot](quiver-image-url/inkpot.png)|![lovelace](quiver-image-url/lovelace.png)|![manni](quiver-image-url/manni.png)|![monokai](quiver-image-url/monokai.png)|![murphy](quiver-image-url/murphy.png)|
+|![igor](./images/igor.png)|![inkpot](./images/inkpot.png)|![lovelace](./images/lovelace.png)|![manni](./images/manni.png)|![monokai](./images/monokai.png)|![murphy](./images/murphy.png)|
 |native|paraiso-dark|paraiso-light|pastie|perldoc|rainbow_dash|
-|![native](quiver-image-url/native.png)|![paraiso-dark](quiver-image-url/paraiso-dark.png)|![paraiso-light](quiver-image-url/paraiso-light.png)|![pastie](quiver-image-url/pastie.png)|![perldoc](quiver-image-url/perldoc.png)|![rainbow_dash](quiver-image-url/rainbow_dash.png)|
+|![native](./images/native.png)|![paraiso-dark](./images/paraiso-dark.png)|![paraiso-light](./images/paraiso-light.png)|![pastie](./images/pastie.png)|![perldoc](./images/perldoc.png)|![rainbow_dash](./images/rainbow_dash.png)|
 |rrt|sas|solarized-dark|solarized-light|stata|stata-dark|
-|![rrt](quiver-image-url/rrt.png)|![sas](quiver-image-url/sas.png)|![solarized-dark](quiver-image-url/solarized-dark.png)|![solarized-light](quiver-image-url/solarized-light.png)|![stata](quiver-image-url/stata.png)|![stata-dark](quiver-image-url/stata-dark.png)|
+|![rrt](./images/rrt.png)|![sas](./images/sas.png)|![solarized-dark](./images/solarized-dark.png)|![solarized-light](./images/solarized-light.png)|![stata](./images/stata.png)|![stata-dark](./images/stata-dark.png)|
 |stata-light|tango|trac|vim|vs|xcode|
-|![stata-light](quiver-image-url/stata-light.png)|![tango](quiver-image-url/tango.png)|![trac](quiver-image-url/trac.png)|![vim](quiver-image-url/vim.png)|![vs](quiver-image-url/vs.png)|![xcode](quiver-image-url/xcode.png)|
+|![stata-light](./images/stata-light.png)|![tango](./images/tango.png)|![trac](./images/trac.png)|![vim](./images/vim.png)|![vs](./images/vs.png)|![xcode](./images/xcode.png)|
 
 ___
 
