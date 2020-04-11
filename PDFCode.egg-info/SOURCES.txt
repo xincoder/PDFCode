@@ -1,0 +1,10 @@
+README.md
+setup.py
+PDFCode/PDFCode.py
+PDFCode/__init__.py
+PDFCode.egg-info/PKG-INFO
+PDFCode.egg-info/SOURCES.txt
+PDFCode.egg-info/dependency_links.txt
+PDFCode.egg-info/entry_points.txt
+PDFCode.egg-info/requires.txt
+PDFCode.egg-info/top_level.txt

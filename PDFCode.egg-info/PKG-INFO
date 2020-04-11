@@ -1,0 +1,97 @@
+Metadata-Version: 2.1
+Name: PDFCode
+Version: 0.1.0
+Summary: Save code files into PDF format with syntax highlighting.
+Home-page: https://github.com/xincoder/PDFCode
+Author: xincoder
+Author-email: xincoder@gmail.com
+License: UNKNOWN
+Description: ### PDFCode
+        
+        Save code files into PDF format with syntax highlighting. 
+        
+        It can convert a single code file or all files in a project (folder) using one command. 
+        
+        ___
+        
+        ### 1. Installation
+        
+        
+        #### MacOS:
+        ``` Bash
+        > pip install PDFCode
+        
+        # install wkhtmltopdf
+        > brew install caskroom/cask/wkhtmltopdf
+        # or
+        # brew cask reinstall wkhtmltopdf
+        
+        # install libmagic
+        > brew install libmagic
+        ```
+        
+        ___
+        
+        ### 2. Usage
+        Open a terminal and type the following command:
+        ``` bash
+        > pdfcode --help 
+        
+        # usage: pdfcode [-h] [--dst [DST]] [-l] [-s SIZE] [-S NAME] [-m MARGIN] [-v] src
+        #
+        # Convert source files into .pdf with syntax highlighting
+        #
+        # positional arguments:
+        #  src                   the path of the file/folder
+        #
+        # optional arguments:
+        #  -h, --help            show this help message and exit
+        #  --dst [DST]           the path of the saving target folder. Empty will save
+        #                        to PDFCode_Results/
+        #  -l, --linenos         include line numbers.
+        #  -s SIZE, --size SIZE  PDF size. Letter,A1,A2,A3,A4,A5 etc
+        #  -S NAME, --style NAME
+        #                        the style name for highlighting.
+        #  -m MARGIN, --margin MARGIN
+        #                        the layout margins in inch (default 0.4in).
+        #  -v, --version         show program's version number and exit
+        ```
+        
+        Example 
+        ``` Bash
+        # process single file:
+        > pdfcode ./test/algol.py -s a4 -S colorful 
+        
+        # process all files in a folder and its subfolders:
+        > pdfcode ./test -s a4 -S colorful 
+        ```
+        
+        Now, the code supports 36 styles:
+        
+        |abap|algol|algol_nu|arduino|autumn|borland|
+        |:---:|:---:|:---:|:---:|:---:|:---:|
+        |bw|colorful|default|emacs|friendly|fruity|
+        |igor|inkpot|lovelace|manni|monokai|murphy|
+        |native|paraiso-dark|paraiso-light|pastie|perldoc|rainbow_dash|
+        |rrt|sas|solarized-dark|solarized-light|stata|stata-dark|
+        |stata-light|tango|trac|vim|vs|xcode|
+        
+        ___
+        
+        ### 3. Acknowledgements
+        - This code is modified from [code2pdf](https://pypi.org/project/Code2pdf/). I am holding this repository because the [code2pdf](https://pypi.org/project/Code2pdf/) had the following problems at the moment when I was trying to use.
+            1. The generated PDF files did not have syntax highlighting (all black-white).
+            2. The command only supported to process a single file. Sometime, I want to process multiple code files.
+            3. The **code2pdf** used python2 and pyqt4. They were not easy to setup on my machine (especially pyqt4).
+        - This code is implemented based on libraries like pdfkit, magic, pygments, etc.
+        I appreciate the contributations of all of these authors.
+        
+        ___
+        
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3.6
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=2.7
+Description-Content-Type: text/markdown

@@ -138,7 +138,7 @@ def parse_arg():
         epilog="Author:xincoder@gmail.com"
     )
     parser.add_argument(
-        "--src",
+        "src",
         help="the path of the file/folder",
         type=str)
     parser.add_argument(
@@ -186,7 +186,6 @@ def main():
     for in_path, out_path, convert_mask in zip(infile_list, outfile_list, convert_mask_list):
         pdf = PDFCode(input_file=in_path, output_file=out_path, size=args.size, margin=args.margin, input_root=input_root)
         pdf.save_pdf(linenos=args.linenos, style=args.style, convert=convert_mask)
-    
     return 0
 
 if __name__ == "__main__":

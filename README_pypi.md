@@ -13,18 +13,13 @@ ___
 ``` Bash
 > pip install PDFCode
 
-########################################
 # install wkhtmltopdf
 > brew install caskroom/cask/wkhtmltopdf
 # or
 # brew cask reinstall wkhtmltopdf
-########################################
 
-
-########################################
 # install libmagic
 > brew install libmagic
-########################################
 ```
 
 ___
@@ -67,18 +62,11 @@ Now, the code supports 36 styles:
 
 |abap|algol|algol_nu|arduino|autumn|borland|
 |:---:|:---:|:---:|:---:|:---:|:---:|
-|![abap](./images/abap.png)|![algol](./images/algol.png)|![algol_nu](./images/algol_nu.png)|![arduino](./images/arduino.png)|![autumn](./images/autumn.png)|![borland](./images/borland.png)|
 |bw|colorful|default|emacs|friendly|fruity|
-|![bw](./images/bw.png)|![colorful](./images/colorful.png)|![default](./images/default.png)|![emacs](./images/emacs.png)|![friendly](./images/friendly.png)|![fruity](./images/fruity.png)|
 |igor|inkpot|lovelace|manni|monokai|murphy|
-|![igor](./images/igor.png)|![inkpot](./images/inkpot.png)|![lovelace](./images/lovelace.png)|![manni](./images/manni.png)|![monokai](./images/monokai.png)|![murphy](./images/murphy.png)|
 |native|paraiso-dark|paraiso-light|pastie|perldoc|rainbow_dash|
-|![native](./images/native.png)|![paraiso-dark](./images/paraiso-dark.png)|![paraiso-light](./images/paraiso-light.png)|![pastie](./images/pastie.png)|![perldoc](./images/perldoc.png)|![rainbow_dash](./images/rainbow_dash.png)|
 |rrt|sas|solarized-dark|solarized-light|stata|stata-dark|
-|![rrt](./images/rrt.png)|![sas](./images/sas.png)|![solarized-dark](./images/solarized-dark.png)|![solarized-light](./images/solarized-light.png)|![stata](./images/stata.png)|![stata-dark](./images/stata-dark.png)|
 |stata-light|tango|trac|vim|vs|xcode|
-|![stata-light](./images/stata-light.png)|![tango](./images/tango.png)|![trac](./images/trac.png)|![vim](./images/vim.png)|![vs](./images/vs.png)|![xcode](./images/xcode.png)|
-
 
 ___
 
