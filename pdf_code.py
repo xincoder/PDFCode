@@ -109,7 +109,7 @@ def get_path_list(path_src, path_dst):
         path_dst = os.path.dirname(path_dst+'/')+'/'
         # print(input_root, path_dst)
 
-    convert_mask_list = [any(mm in magic.detect_from_filename(x).mime_type for mm in ['text/', 'x-']) for x in input_file_list]
+    convert_mask_list = [any(mm in magic.detect_from_filename(x).mime_type for mm in ['text/', 'x-empty']) for x in input_file_list]
 
     # replace root path
     now_file_list = [x.replace(input_root, path_dst) for x in input_file_list] 
