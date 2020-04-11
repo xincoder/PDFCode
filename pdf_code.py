@@ -9,9 +9,9 @@ import pygments
 from pygments import lexers, formatters, styles
 import shutil
 
-__version__ = '1.0.0'
+__version__ = '0.0.1'
 
-class PDF_Code:
+class PDFCode:
     """
         Convert a source file into a pdf with syntax highlighting.
     """
@@ -104,7 +104,7 @@ def get_path_list(path_src, path_dst):
 
     
     if path_dst is None:
-        path_dst = os.path.join(input_root, 'Pdf_Code_Results/')
+        path_dst = os.path.join(input_root, 'PDFCode_Results/')
     else:
         path_dst = os.path.dirname(path_dst+'/')+'/'
         # print(input_root, path_dst)
@@ -128,7 +128,7 @@ def parse_arg():
     parser = argparse.ArgumentParser(
         description=(
             "Convert source files into .pdf with syntax highlighting"),
-        epilog="Author:xincoder"
+        epilog="Author:xincoder@gmail.com"
     )
     parser.add_argument(
         "--src",
@@ -136,7 +136,7 @@ def parse_arg():
         type=str)
     parser.add_argument(
         "--dst",
-        help="the path of the saving target folder.",
+        help="the path of the saving target folder. Empty will save to PDFCode_Results/",
         nargs="?",
         type=str)
     parser.add_argument(
@@ -177,7 +177,7 @@ def main():
     args = parse_arg()
     infile_list, outfile_list, convert_mask_list, input_root = get_path_list(args.src, args.dst)
     for in_path, out_path, convert_mask in zip(infile_list, outfile_list, convert_mask_list):
-        pdf = PDF_Code(input_file=in_path, output_file=out_path, size=args.size, margin=args.margin, input_root=input_root)
+        pdf = PDFCode(input_file=in_path, output_file=out_path, size=args.size, margin=args.margin, input_root=input_root)
         pdf.save_pdf(linenos=args.linenos, style=args.style, convert=convert_mask)
     
     return 0
