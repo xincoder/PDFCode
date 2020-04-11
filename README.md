@@ -70,7 +70,6 @@ Now, the code supports 36 styles:
 
 |abap|algol|algol_nu|arduino|autumn|borland|
 |:---:|:---:|:---:|:---:|:---:|:---:|
-
 |![abap](./images/abap.png)|![algol](./images/algol.png)|![algol_nu](./images/algol_nu.png)|![arduino](./images/arduino.png)|![autumn](./images/autumn.png)|![borland](./images/borland.png)|
 |bw|colorful|default|emacs|friendly|fruity|
 |![bw](./images/bw.png)|![colorful](./images/colorful.png)|![default](./images/default.png)|![emacs](./images/emacs.png)|![friendly](./images/friendly.png)|![fruity](./images/fruity.png)|
