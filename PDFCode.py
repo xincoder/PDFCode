@@ -48,7 +48,10 @@ class PDFCode:
 
         try:
             with open(self.input_file, "r") as f:
-                content = f.read()
+                try:
+                    content = f.read()
+                except:
+                    return None, False
                 try:
                     lexer = lexer or lexers.guess_lexer(content)
                 except pygments.util.ClassNotFound:
@@ -58,31 +61,35 @@ class PDFCode:
             logging.error(fmt.format(self.input_file, exread))
             sys.exit(2)
 
-        return pygments.highlight(content, lexer, formatter)
+        return pygments.highlight(content, lexer, formatter), True
 
     def save_pdf(self, linenos=True, style="default", convert=False):
         print('Processing {} ...'.format(self.input_file))
         
         if convert:
-            text = self.highlight_code(linenos=linenos, style=style)
-            options = {
-                'page-size': self.size.lower(),
-                'margin-top': self.margin,
-                'margin-right': self.margin,
-                'margin-bottom': self.margin,
-                'margin-left': self.margin,
-                'encoding': "UTF-8",
-                'custom-header' : [
-                    ('Accept-Encoding', 'gzip')
-                ],
-                # 'header-left':self.input_file.replace(self.input_root, './'),
-                'header-left':self.input_file,
-                'header-font-size': 7,
-                'footer-center': '[page]',
-                'footer-font-size': 7,
-                
-            }
-            pdfkit.from_string(input=text, output_path=self.pdf_file, cover='', options=options)
+            text, res = self.highlight_code(linenos=linenos, style=style)
+            if not res: # if not successfully read the file
+                self.pdf_file = self.pdf_file.replace('.pdf', '')
+                shutil.copy(self.input_file, self.pdf_file)
+            else:
+                options = {
+                    'page-size': self.size.lower(),
+                    'margin-top': self.margin,
+                    'margin-right': self.margin,
+                    'margin-bottom': self.margin,
+                    'margin-left': self.margin,
+                    'encoding': "UTF-8",
+                    'custom-header' : [
+                        ('Accept-Encoding', 'gzip')
+                    ],
+                    # 'header-left':self.input_file.replace(self.input_root, './'),
+                    'header-left':self.input_file,
+                    'header-font-size': 7,
+                    'footer-center': '[page]',
+                    'footer-font-size': 7,
+                    
+                }
+                pdfkit.from_string(input=text, output_path=self.pdf_file, cover='', options=options)
         else:
             shutil.copy(self.input_file, self.pdf_file)
         print('PDF saved at {}'.format(self.pdf_file))
@@ -109,7 +116,7 @@ def get_path_list(path_src, path_dst):
         path_dst = os.path.dirname(path_dst+'/')+'/'
         # print(input_root, path_dst)
 
-    convert_mask_list = [any(mm in magic.detect_from_filename(x).mime_type for mm in ['text/', 'x-empty']) for x in input_file_list]
+    convert_mask_list = [any(mm in magic.detect_from_filename(x).mime_type for mm in ['text/', 'x-']) for x in input_file_list]
 
     # replace root path
     now_file_list = [x.replace(input_root, path_dst) for x in input_file_list] 
