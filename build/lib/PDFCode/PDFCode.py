@@ -9,7 +9,7 @@ import pygments
 from pygments import lexers, formatters, styles
 import shutil
 
-__version__ = '0.0.1'
+__version__ = '0.1.1'
 
 class PDFCode:
     """
@@ -97,7 +97,8 @@ class PDFCode:
 
 
     
-def get_path_list(path_src, path_dst):
+def get_path_list(path_src, path_dst, ignore):
+
     input_root = path_src
     input_file_list = []
 
@@ -117,6 +118,11 @@ def get_path_list(path_src, path_dst):
         # print(input_root, path_dst)
 
     convert_mask_list = [any(mm in magic.detect_from_filename(x).mime_type for mm in ['text/', 'x-']) for x in input_file_list]
+    
+    # ignore file name contains ignore. 
+    if ignore is not '':
+        ignore_list = ignore.split(',')
+        convert_mask_list = [mask & (not any(ign in os.path.basename(x) for ign in ignore_list))for x,mask in zip(input_file_list,convert_mask_list)]
 
     # replace root path
     now_file_list = [x.replace(input_root, path_dst) for x in input_file_list] 
@@ -139,17 +145,17 @@ def parse_arg():
     )
     parser.add_argument(
         "src",
-        help="the path of the file/folder",
+        help="The path of the file/folder",
         type=str)
     parser.add_argument(
         "--dst",
-        help="the path of the saving target folder. Empty will save to PDFCode_Results/",
+        help="The path of the saving target folder. Empty will save to PDFCode_Results/",
         nargs="?",
         type=str)
     parser.add_argument(
         "-l",
         "--linenos",
-        help="include line numbers.",
+        help="Include line numbers.",
         default=True,
         action="store_true")
     parser.add_argument(
@@ -161,17 +167,22 @@ def parse_arg():
     parser.add_argument(
         "-S",
         "--style",
-        help="the style name for highlighting.",
+        help="The style name for highlighting.",
         type=str,
         default="default",
         metavar="NAME")
     parser.add_argument(
         "-m",
         "--margin",
-        help="the layout margins in inch (default 0.4in).",
+        help="The layout margins in inch (default 0.4in).",
         type=float,
         default=0.4,
         )
+    parser.add_argument(
+        "--ignore",
+        help="Ignore files whose names contain sub-string. (multiple ignore str splited using , e.g., --ignore abc,.jpg to ignore 'abc' and '.jpg')",
+        type=str,
+        default='')
     parser.add_argument(
         "-v",
         "--version",
@@ -182,7 +193,7 @@ def parse_arg():
 
 def main():
     args = parse_arg()
-    infile_list, outfile_list, convert_mask_list, input_root = get_path_list(args.src, args.dst)
+    infile_list, outfile_list, convert_mask_list, input_root = get_path_list(args.src, args.dst, args.ignore)
     for in_path, out_path, convert_mask in zip(infile_list, outfile_list, convert_mask_list):
         pdf = PDFCode(input_file=in_path, output_file=out_path, size=args.size, margin=args.margin, input_root=input_root)
         pdf.save_pdf(linenos=args.linenos, style=args.style, convert=convert_mask)

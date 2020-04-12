@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: PDFCode
-Version: 0.1.0
+Version: 0.1.1
 Summary: Save code files into PDF format with syntax highlighting.
 Home-page: https://github.com/xincoder/PDFCode
 Author: xincoder
@@ -21,46 +21,62 @@ Description: ### PDFCode
         ``` Bash
         > pip install PDFCode
         
+        ########################################
         # install wkhtmltopdf
-        > brew install caskroom/cask/wkhtmltopdf
+        > brew cask reinstall wkhtmltopdf
         # or
-        # brew cask reinstall wkhtmltopdf
+        # brew install caskroom/cask/wkhtmltopdf
+        ########################################
         
+        
+        ########################################
         # install libmagic
         > brew install libmagic
+        ########################################
         ```
         
         ___
         
         ### 2. Usage
-        Open a terminal and type the following command:
+        - 2.1 Python Library
+        ``` python
+        from PDFCode import PDFCode
+        ```
+        
+        - 2.2 Console app. Open a terminal and type the following command:
         ``` bash
         > pdfcode --help 
         
-        # usage: pdfcode [-h] [--dst [DST]] [-l] [-s SIZE] [-S NAME] [-m MARGIN] [-v] src
-        #
+        # usage: PDFCode.py [-h] [--dst [DST]] [-l] [-s SIZE] [-S NAME] [-m MARGIN]
+        #                   [--ignore IGNORE] [-v]
+        #                   src
+        
         # Convert source files into .pdf with syntax highlighting
-        #
+        
         # positional arguments:
-        #  src                   the path of the file/folder
-        #
+        #   src                   The path of the file/folder
+        
         # optional arguments:
-        #  -h, --help            show this help message and exit
-        #  --dst [DST]           the path of the saving target folder. Empty will save
-        #                        to PDFCode_Results/
-        #  -l, --linenos         include line numbers.
-        #  -s SIZE, --size SIZE  PDF size. Letter,A1,A2,A3,A4,A5 etc
-        #  -S NAME, --style NAME
-        #                        the style name for highlighting.
-        #  -m MARGIN, --margin MARGIN
-        #                        the layout margins in inch (default 0.4in).
-        #  -v, --version         show program's version number and exit
+        #   -h, --help            show this help message and exit
+        #   --dst [DST]           The path of the saving target folder. Empty will save
+        #                         to PDFCode_Results/
+        #   -l, --linenos         Include line numbers.
+        #   -s SIZE, --size SIZE  PDF size. Letter,A1,A2,A3,A4,A5, etc.
+        #   -S NAME, --style NAME
+        #                         The style name for highlighting.
+        #   -m MARGIN, --margin MARGIN
+        #                         The layout margins in inch (default 0.4in).
+        #   --ignore IGNORE       Ignore files whose names contain sub-string. (multiple
+        #                         ignore str splited using , e.g., --ignore abc,.jpg to
+        #                         ignore 'abc' and '.jpg')
+        #   -v, --version         show program's version number and exit
         ```
         
         Example 
-        ``` Bash
+        
+        ``` bash 
         # process single file:
-        > pdfcode ./test/algol.py -s a4 -S colorful 
+        > pdfcode ./test/algol.py -s a4 -S colorful --ignore .json,test
         
         # process all files in a folder and its subfolders:
         > pdfcode ./test -s a4 -S colorful 

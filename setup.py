@@ -5,7 +5,7 @@ with open("README_pypi.md", "r") as fh:
 
 setuptools.setup(
     name="PDFCode", # Replace with your own username
-    version="0.1.0",
+    version="0.1.1",
     author="xincoder",
     author_email="xincoder@gmail.com",
     description="Save code files into PDF format with syntax highlighting.",
