@@ -9,7 +9,9 @@ import pygments
 from pygments import lexers, formatters, styles
 import shutil
 
-__version__ = '0.1.1'
+# __version__ = '0.1.1'
+with open("version", "r") as fh:
+    version = fh.read()
 
 class PDFCode:
     """

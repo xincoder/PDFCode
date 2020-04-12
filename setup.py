@@ -3,9 +3,12 @@ import setuptools
 with open("README_pypi.md", "r") as fh:
     long_description = fh.read()
 
+with open("./PDFCode/version", "r") as fh:
+    version = fh.read()
+
 setuptools.setup(
     name="PDFCode", # Replace with your own username
-    version="0.1.1",
+    version=version, #"0.1.1",
     author="xincoder",
     author_email="xincoder@gmail.com",
     description="Save code files into PDF format with syntax highlighting.",
