@@ -1,3 +1,4 @@
 pygments
 pdfkit
 file-magic
+markdown

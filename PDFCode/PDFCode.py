@@ -8,10 +8,12 @@ import magic
 import pygments
 from pygments import lexers, formatters, styles
 import shutil
+import markdown
+import codecs
 
-# __version__ = '0.1.1'
-with open("version", "r") as fh:
-    version = fh.read()
+__version__ = '0.1.2.1'
+# with open("version", "r") as fh:
+#     __version__ = fh.read()
 
 class PDFCode:
     """
@@ -63,18 +65,17 @@ class PDFCode:
             logging.error(fmt.format(self.input_file, exread))
             sys.exit(2)
 
+        if os.path.splitext(self.input_file)[-1] == '.md':
+            return content, True
+
         return pygments.highlight(content, lexer, formatter), True
 
     def save_pdf(self, linenos=True, style="default", convert=False):
         print('Processing {} ...'.format(self.input_file))
-        
         if convert:
             text, res = self.highlight_code(linenos=linenos, style=style)
-            if not res: # if not successfully read the file
-                self.pdf_file = self.pdf_file.replace('.pdf', '')
-                shutil.copy(self.input_file, self.pdf_file)
-            else:
-                options = {
+                        
+            options = {
                     'page-size': self.size.lower(),
                     'margin-top': self.margin,
                     'margin-right': self.margin,
@@ -88,9 +89,21 @@ class PDFCode:
                     'header-left':self.input_file,
                     'header-font-size': 7,
                     'footer-center': '[page]',
-                    'footer-font-size': 7,
-                    
+                    'footer-font-size': 7,   
                 }
+
+            if os.path.splitext(self.input_file)[-1] == '.md':
+                # print(content)
+                content = markdown.markdown(text, extensions=['fenced_code', 'tables'])
+                html_path = self.input_file.replace('.md','_xincoder_temp.html')
+                with codecs.open(html_path, 'w', encoding='utf-8', errors="xmlcharrefreplace") as output_file:
+                    output_file.write(content)
+                pdfkit.from_file(input=html_path, output_path=self.pdf_file, cover='', options=options)
+                os.remove(html_path)
+            elif not res: # if not successfully read the file
+                self.pdf_file = self.pdf_file.replace('.pdf', '')
+                shutil.copy(self.input_file, self.pdf_file)
+            else:
                 pdfkit.from_string(input=text, output_path=self.pdf_file, cover='', options=options)
         else:
             shutil.copy(self.input_file, self.pdf_file)
@@ -110,9 +123,8 @@ def get_path_list(path_src, path_dst, ignore):
     else:
         input_root = os.path.dirname(input_root+'/')+'/'
         for (current_path, subfolder, filenames) in os.walk(path_src):
-            input_file_list += [os.path.join(current_path, x) for x in filenames]
+            input_file_list += [os.path.join(current_path, x) for x in filenames if '_xincoder_temp.html' not in x]
 
-    
     if path_dst is None:
         path_dst = os.path.join(input_root, 'PDFCode_Results/')
     else:
@@ -122,7 +134,7 @@ def get_path_list(path_src, path_dst, ignore):
     convert_mask_list = [any(mm in magic.detect_from_filename(x).mime_type for mm in ['text/', 'x-']) for x in input_file_list]
     
     # ignore file name contains ignore. 
-    if ignore is not '':
+    if ignore != '':
         ignore_list = ignore.split(',')
         convert_mask_list = [mask & (not any(ign in os.path.basename(x) for ign in ignore_list))for x,mask in zip(input_file_list,convert_mask_list)]
 

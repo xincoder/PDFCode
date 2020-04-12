@@ -1,14 +1,15 @@
 import setuptools
+from PDFCode.PDFCode import __version__
 
 with open("README_pypi.md", "r") as fh:
     long_description = fh.read()
 
-with open("./PDFCode/version", "r") as fh:
-    version = fh.read()
+# with open("./PDFCode/version.txt", "r") as fh:
+    # version = fh.read()
 
 setuptools.setup(
     name="PDFCode", # Replace with your own username
-    version=version, #"0.1.1",
+    version=__version__, 
     author="xincoder",
     author_email="xincoder@gmail.com",
     description="Save code files into PDF format with syntax highlighting.",
@@ -23,6 +24,7 @@ setuptools.setup(
         'pygments',
         'pdfkit',
         'file-magic',
+        'markdown',
       ],
     classifiers=[
         "Programming Language :: Python :: 3.6",
