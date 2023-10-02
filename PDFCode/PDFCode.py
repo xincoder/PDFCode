@@ -10,8 +10,10 @@ from pygments import lexers, formatters, styles
 import shutil
 import markdown
 import codecs
+from pyhtml2pdf import converter
 
-__version__ = '0.1.2.1'
+
+__version__ = '0.2.1.2'
 # with open("version", "r") as fh:
 #     __version__ = fh.read()
 
@@ -98,7 +100,10 @@ class PDFCode:
                 html_path = self.input_file.replace('.md','_xincoder_temp.html')
                 with codecs.open(html_path, 'w', encoding='utf-8', errors="xmlcharrefreplace") as output_file:
                     output_file.write(content)
-                pdfkit.from_file(input=html_path, output_path=self.pdf_file, cover='', options=options)
+                # pdfkit.from_file(input=html_path, output_path=self.pdf_file, cover='', options=options)
+                # pdfkit.from_url(url=html_path, output_path=self.pdf_file, cover='', options=options)
+                now_htmlPath = os.path.abspath(html_path)
+                converter.convert(f'file:///{now_htmlPath}', self.pdf_file)
                 os.remove(html_path)
             elif not res: # if not successfully read the file
                 self.pdf_file = self.pdf_file.replace('.pdf', '')
@@ -131,7 +136,8 @@ def get_path_list(path_src, path_dst, ignore):
         path_dst = os.path.dirname(path_dst+'/')+'/'
         # print(input_root, path_dst)
 
-    convert_mask_list = [any(mm in magic.detect_from_filename(x).mime_type for mm in ['text/', 'x-']) for x in input_file_list]
+    # convert_mask_list = [any(mm in magic.detect_from_filename(x).mime_type for mm in ['text/', 'x-']) for x in input_file_list]
+    convert_mask_list = [any(mm in magic.from_file(x) for mm in ['text', 'x-']) for x in input_file_list]
     
     # ignore file name contains ignore. 
     if ignore != '':

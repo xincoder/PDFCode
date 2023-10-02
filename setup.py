@@ -1,7 +1,7 @@
 import setuptools
 from PDFCode.PDFCode import __version__
 
-with open("README_pypi.md", "r") as fh:
+with open("README.md", "r") as fh:
     long_description = fh.read()
 
 # with open("./PDFCode/version.txt", "r") as fh:
@@ -25,6 +25,7 @@ setuptools.setup(
         'pdfkit',
         'file-magic',
         'markdown',
+        'pyhtml2pdf',
       ],
     classifiers=[
         "Programming Language :: Python :: 3.6",

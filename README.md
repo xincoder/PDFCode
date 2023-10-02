@@ -4,6 +4,8 @@ Save code files into PDF format with syntax highlighting.
 
 It can convert a single code file or all files in a project (folder) using one command. 
 
+Updated for MacOS M2 Chipset. 
+
 ___
 
 ### 1. Installation
