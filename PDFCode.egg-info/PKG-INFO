@@ -1,4 +1,4 @@
-Metadata-Version: 2.1
+Metadata-Version: 2.4
 Name: PDFCode
 Version: 0.2.1.2
 Summary: Save code files into PDF format with syntax highlighting.
@@ -11,6 +11,21 @@ Classifier: Operating System :: OS Independent
 Requires-Python: >=2.7
 Description-Content-Type: text/markdown
 License-File: LICENSE
+Requires-Dist: pygments
+Requires-Dist: pdfkit
+Requires-Dist: file-magic
+Requires-Dist: markdown
+Requires-Dist: pyhtml2pdf
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: license-file
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
 
 ### PDFCode
 

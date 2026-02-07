@@ -1,11 +1,10 @@
 import setuptools
-from PDFCode.PDFCode import __version__
 
 with open("README.md", "r") as fh:
     long_description = fh.read()
 
-# with open("./PDFCode/version.txt", "r") as fh:
-    # version = fh.read()
+with open("./PDFCode/version.txt", "r") as fh:
+    __version__ = fh.read().strip()
 
 setuptools.setup(
     name="PDFCode", # Replace with your own username

@@ -3,7 +3,6 @@ import argparse
 import logging
 import os
 import sys
-import pdfkit
 import magic
 import pygments
 from pygments import lexers, formatters, styles
@@ -12,10 +11,9 @@ import markdown
 import codecs
 from pyhtml2pdf import converter
 
+with open("./PDFCode/version.txt", "r") as fh:
+    __version__ = fh.read().strip()
 
-__version__ = '0.2.1.2'
-# with open("version", "r") as fh:
-#     __version__ = fh.read()
 
 class PDFCode:
     """
@@ -109,6 +107,7 @@ class PDFCode:
                 self.pdf_file = self.pdf_file.replace('.pdf', '')
                 shutil.copy(self.input_file, self.pdf_file)
             else:
+                import pdfkit
                 pdfkit.from_string(input=text, output_path=self.pdf_file, cover='', options=options)
         else:
             shutil.copy(self.input_file, self.pdf_file)
